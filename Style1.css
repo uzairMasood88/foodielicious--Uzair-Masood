@@ -10,25 +10,11 @@ h1{
     padding: 20px;
 }
 nav{
-    background-color: orange;
-    display: grid;
+    background-image: linear-gradient(180deg, orange, yellow);
+    color: black;
     place-items: center;
 }
-nav ul{
-    list-style-type: none;
-}
-nav ul a{
-    display: inline-block;
-    padding: 20px;
-    text-decoration: none;
-    color; #000;
-    transition: 0.2s ease-in;
-    font-size: 18px;
-}
-nav ul a:hover{
-    background-color: rgb(128, 0, 90);
-    color; white;
-}
+
 .items{
     display: grid;
    grid-template-columns: repeat(3, fr);
@@ -76,26 +62,3 @@ nav ul a:hover{
         grid-template-columns: repeat(1, 1fr);
     }
 }
-.searchbar input[type=text] {
-    float: right;
-    padding: 6px;
-    border: none;
-    margin-top: 8px;
-    margin-right: 16px;
-    font-size: 17px;
-  }
-  
-  /* When the screen is less than 600px wide, stack the links and the search field vertically instead of horizontally */
-  @media screen and (max-width: 600px) {
-    .searchbar a, .searchbar input[type=text] {
-      float: none;
-      display: block;
-      text-align: left;
-      width: 100%;
-      margin: 0;
-      padding: 14px;
-    }
-    .searchbar input[type=text] {
-      border: 1px solid #ccc;
-    }
-  }
