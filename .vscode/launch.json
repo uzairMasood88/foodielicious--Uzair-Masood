@@ -7,8 +7,9 @@
         {
             "type": "chrome",
             "request": "launch",
-            "name": "Open Comparison.html",
-            "file": "c:\\Users\\xps\\OneDrive\\Documents\\GitHub\\foodielicious--Uzair-Masood\\Comparison.html"
+            "name": "Launch Chrome against localhost",
+            "url": "http://localhost:8080",
+            "webRoot": "${workspaceFolder}"
         }
     ]
 }
