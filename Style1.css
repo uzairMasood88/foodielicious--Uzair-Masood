@@ -69,3 +69,20 @@ nav{
     font-size: 2rem;
     font-family: verdana;
 }
+#menu_row{
+    display: flex;
+    padding: 0 100px 0 100px;
+}
+#menu_col{
+    box-shadow: 2px  #bbb;
+    border: 1px solid rgb(140, 139, 139);
+    background-color: #fff;
+    margin: 5px;
+}
+#menu_col h2{
+    background-color: rgb(246, 95, 95);
+    color: #fff;
+    text-align: center;
+    padding: 5px;
+    font-family: cursive;
+}
