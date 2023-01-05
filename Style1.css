@@ -155,6 +155,12 @@ object-fit: fill;
 }
 contact_col p{
     font-weight: bold;
+    color:rgb(246, 95, 95);
+    margin: 19px;
+}
+contact_col p a{
+    text-decoration: none;
+    color: #bb2acb
 }
 
 
