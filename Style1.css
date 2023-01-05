@@ -195,6 +195,16 @@ object-fit: fill;
     display: table;
     clear: both;
   }
+  #footer{
+    background-color: #292929;
+    padding: 20px;
+    position: relative;
+  }
+  #footer h5{
+    text-align: center;
+    color: #fff;
+    text-decoration: none;
+  }
   
   /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
   @media screen and (max-width: 600px) {
