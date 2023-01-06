@@ -67,9 +67,10 @@ mysqli_close($conn);
       <ul class="nav navbar-nav">
         <li><a href="Home.html">Home</a></li>
         <li><a href="Menu.html">Menu</a></li>
-        <li><a href="Contact.html">Contact</a></li>
-        <li><a href="Feedback.html">Feedback</a></li>
         <li class="active"><a href="Reservation.html">Reservation</a></li>
+        <li><a href="Feedback.html">Feedback</a></li>
+        <li><a href="Contact.html">Contact</a></li>
+        
         <li><a href="About.html">About</a></li>
       
       </ul>
@@ -114,17 +115,24 @@ mysqli_close($conn);
     <label for="table-selection">Select Table Preference</label>
     <select id="table-selection" name="table_preference" required>
         <option value="">Choose a Table from the List</option>
-        <option value="connecting">Connecting</option>
-        <option value="adjoining">Adjoining</option>
-        <option value="adjacent">Adjacent</option>
+        <option value="connecting">Connecting 6 people +</option>
+        <option value="adjoining">sunset view</option>
+        <option value="adjacent">Adjacent 2 people</option>
     </select>
   </div>
   <hr>
   <div class="elem-group">
     <label for="message">Anything Else?</label>
     <textarea id="message" name="visitor_message" placeholder="Tell us anything else that might be important." required></textarea>
+  
   </div>
-  <button type="submit">Book a table</button>
+  <div>
+    <button type="submit">Book a table</button>
+  </div>
+  
+  <div class="free">
+        <br>
+  </div>
 </form>
 <div id="footer">
     <div>
