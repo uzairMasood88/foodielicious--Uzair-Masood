@@ -1,42 +1,39 @@
 <?php
 
 // Connect to the database
-$db_host = "localhost";
-$db_username = "root";
-$db_password = "";
-$db_name = "reservations";
+$servername = "localhost";
+$username = "username";
+$password = "password";
+$dbname = "database_name";
 
-// Get the form data
-$name = $_POST['name'];
-$email = $_POST['email'];
-$number_of_guests = $_POST['number'];
-$date = $_POST['date'];
-$time = $_POST['time'];
-$phone = $_POST['phone'];
-$message = $_POST['message'];
-
-// Connect to the database
-$conn = mysqli_connect('localhost', 'username', 'password', 'database');
+// Create connection
+$conn = mysqli_connect($servername, $username, $password, $dbname);
 
 // Check connection
 if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
+  die("Connection failed: " . mysqli_connect_error());
 }
 
-// Insert the reservation into the reservations table
-$sql = "INSERT INTO reservations (name, email, number_of_guests, date, time, phone, message)
-VALUES ('$name', '$email', '$number_of_guests', '$date', '$time', '$phone', '$message')";
+// Escape user inputs for security
+$name = mysqli_real_escape_string($conn, $_POST['name']);
+$email = mysqli_real_escape_string($conn, $_POST['email']);
+$number = mysqli_real_escape_string($conn, $_POST['number']);
+$date = mysqli_real_escape_string($conn, $_POST['date']);
+$time = mysqli_real_escape_string($conn, $_POST['time']);
+$phone = mysqli_real_escape_string($conn, $_POST['phone']);
+$message = mysqli_real_escape_string($conn, $_POST['message']);
 
-if (mysqli_query($conn, $sql)) {
-    echo "New record created successfully";
-} else {
-    echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+// Attempt insert query execution
+$sql = "INSERT INTO reservations (name, email, number, date, time, phone, message) VALUES ('$name', '$email', '$number', '$date', '$time', '$phone', '$message')";
+if(mysqli_query($conn, $sql)){
+    echo "Records added successfully.";
+} else{
+    echo "ERROR: Could not able to execute $sql. " . mysqli_error($conn);
 }
 
+// Close connection
 mysqli_close($conn);
-
 ?>
-
 
 
 
