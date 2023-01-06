@@ -342,6 +342,9 @@ object-fit: fill;
   button:hover {
     border: 2px solid black;
   }
+  .free {
+    margin: 30px;
+  }
   
   /* Responsive layout - make the columns stack on top of each other instead of next to each other */
   @media (max-width: 400px) {

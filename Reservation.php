@@ -1,43 +1,39 @@
 <?php
-// Connect to the database
-$db_host = "localhost";
-$db_username = "root";
-$db_password = "";
-$db_name = "foodielicious";
-
-$conn = mysqli_connect($db_host, $db_username, $db_password, $db_name);
-
-if (!$conn) {
-  die("Connection failed: " . mysqli_connect_error());
-}
 
 // Check if the form was submitted
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   // Get the form data
-  $visitor_name = mysqli_real_escape_string($conn, $_POST["visitor_name"]);
-  $visitor_email = mysqli_real_escape_string($conn, $_POST["visitor_email"]);
-  $visitor_phone = mysqli_real_escape_string($conn, $_POST["visitor_phone"]);
-  $total_adults = mysqli_real_escape_string($conn, $_POST["total_adults"]);
-  $total_children = mysqli_real_escape_string($conn, $_POST["total_children"]);
-  $checkin = mysqli_real_escape_string($conn, $_POST["checkin"]);
-  $checkout = mysqli_real_escape_string($conn, $_POST["checkout"]);
-  $special_request = mysqli_real_escape_string($conn, $_POST["special_request"]);
+  $visitor_name = $_POST['visitor_name'];
+  $visitor_email = $_POST['visitor_email'];
+  $visitor_phone = $_POST['visitor_phone'];
+  $total_adults = $_POST['total_adults'];
+  $total_children = $_POST['total_children'];
+  $checkin_date = $_POST['checkin_date'];
+  $checkout_date = $_POST['checkout_date'];
+  $special_requests = $_POST['special_requests'];
 
-  // Insert the reservation into the database
-  $sql = "INSERT INTO reservations (visitor_name, visitor_email, visitor_phone, total_adults, total_children, checkin, checkout, special_request) VALUES ('$visitor_name', '$visitor_email', '$visitor_phone', '$total_adults', '$total_children', '$checkin', '$checkout', '$special_request')";
-  $result = mysqli_query($conn, $sql);
-
-  if ($result) {
-    // Redirect to a confirmation page
-    header("Location: reservation_confirmation.html");
-    exit;
+  // Validate the form data
+  if (empty($visitor_name) || empty($visitor_email) || empty($visitor_phone) || empty($total_adults) || empty($checkin_date) || empty($checkout_date)) {
+    $error_message = 'Please fill out all required fields.';
   } else {
-    echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+    // Connect to the database
+    $dbc = mysqli_connect('localhost', 'username', 'password', 'database_name');
+
+    // Save the reservation to the database
+    $query = "INSERT INTO reservations (visitor_name, visitor_email, visitor_phone, total_adults, total_children, checkin_date, checkout_date, special_requests) VALUES ('$visitor_name', '$visitor_email', '$visitor_phone', '$total_adults', '$total_children', '$checkin_date', '$checkout_date', '$special_requests')";
+    mysqli_query($dbc, $query);
+
+    // Close the database connection
+    mysqli_close($dbc);
+
+    // Redirect to the reservation confirmation page
+    header('Location: reservation_confirmation.php');
+    exit;
   }
 }
 
-mysqli_close($conn);
 ?>
+
 
 
 <!DOCTYPE html>
