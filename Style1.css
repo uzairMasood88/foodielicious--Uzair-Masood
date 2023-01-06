@@ -13,6 +13,7 @@ nav{
     background-image: linear-gradient(180deg, orange, yellow);
     color: black;
     place-items: center;
+    border-radius: 30px;
 }
 
 .items{
@@ -70,8 +71,7 @@ nav{
     font-family: verdana;
 }
 #menu_row{
-    display: flex;
-    padding: 0 100px 0 100px;
+
 }
 #menu_col{
     box-shadow: 2px  #bbb;
