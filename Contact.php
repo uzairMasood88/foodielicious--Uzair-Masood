@@ -1,3 +1,26 @@
+<?php
+
+// Connect to the database
+$host = 'localhost';
+$user = 'root';
+$password = '';
+$dbname = 'FOODIELICIOUS';
+
+$dsn = 'mysql:host=' . $host . ';dbname=' . $dbname;
+$pdo = new PDO($dsn, $user, $password);
+
+// Insert data into the database
+$firstname = $_POST['firstname'];
+$lastname = $_POST['lastname'];
+$email = $_POST['email'];
+
+$sql = "INSERT INTO users (firstname, lastname, email) VALUES (?, ?, ?)";
+$stmt = $pdo->prepare($sql);
+$stmt->execute([$firstname, $lastname, $email]);
+
+echo "Record added successfully";
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -80,7 +103,7 @@
                   <img src="tmuc.jpg" style="width:100%">
                 </div>
                 <div class="column">
-                  <form action="/action_page.php">
+                  <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
                     <label for="fname">First Name</label>
                     <input type="text" id="fname" name="firstname" placeholder="Your name..">
                     <label for="lname">Last Name</label>
