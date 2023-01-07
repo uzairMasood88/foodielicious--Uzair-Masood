@@ -4,10 +4,10 @@
 $host = "localhost";
 $username = "root";
 $password = "";
-$dbname = "reservations";
+$dbname = "foodielicious";
 
 // Create connection
-$conn = mysqli_connect($host, $username, $password, $dbname);
+$conn= mysqli_connect($host, $username, $password, $dbname);
 
 // Check connection
 if (!$conn) {
