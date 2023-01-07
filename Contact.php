@@ -48,7 +48,7 @@ echo "Record added successfully";
       <ul class="nav navbar-nav">
         <li><a href="Home.html">Home</a></li>
         <li><a href="Menu.html">Menu</a></li>
-        <li><a href="Reservation.html">Reservation</a></li>
+        <li><a href="Reservation.php">Reservation</a></li>
         <li><a href="Feedback.html">Feedback</a></li>
         <li class="active"><a href="Contact.html">Contact</a></li>
         
