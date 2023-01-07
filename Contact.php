@@ -55,10 +55,7 @@ echo "Record added successfully";
         <li><a href="About.html">About</a></li>
         
       </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="Signup.html"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-        <li><a href="Login.html"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-      </ul>
+      
     </div>
   </div>
 </nav>

@@ -149,9 +149,7 @@ object-fit: fill;
     padding: 0 100px 0 100px;
     flex-wrap: wrap;
 }
-{
-    box-sizing: border-box;
-  }
+
   
   /* Style inputs */
   input[type=text], select, textarea {
@@ -226,9 +224,7 @@ object-fit: fill;
     background-size: cover;
     position: relative;
   }
-  {
-    box-sizing: border-box;
-  }
+  
   
 
   
@@ -280,11 +276,7 @@ object-fit: fill;
   
   
   /* reservation*/
-  {
-    width: 500px;
-    margin: 0 auto;
-    padding: 50px;
-  }
+  
   
   div.elem-group {
     margin: 20px 0;
