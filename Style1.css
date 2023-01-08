@@ -4,6 +4,14 @@
     font-family: sans-serif;
     box-sizing: border-box;
 }
+body{
+  background-image: url('backg2.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+  height: 100vh;
+}
 /*main page home*/
 
 h1{
@@ -317,7 +325,7 @@ html {
   }
   #footer{
     position: fixed;
-    bottom: 0;
+    bottom: 10;
     width: 100%;
     background-color: #292929;
     padding: 10px;
