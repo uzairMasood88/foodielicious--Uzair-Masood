@@ -27,11 +27,11 @@
         <ul class="nav navbar-nav">
           <li><a href="Home.html">Home</a></li>
           <li><a href="Menu.html">Menu</a></li>
-          <li class="active"><a href="Reservation.html">Reservation</a></li>
-          <li><a href="Feedback.html">Feedback</a></li>
+          <li class="active"><a href="Reservation.php">Reservation</a></li>
+          <li><a href="Feedback.phpl">Feedback</a></li>
           <li><a href="Contact.php">Contact</a></li>
           <li><a href="About.html">About</a></li>
-          
+
         </ul>
         
       </div>
