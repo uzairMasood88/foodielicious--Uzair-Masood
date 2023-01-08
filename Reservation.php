@@ -41,7 +41,7 @@
 
 
 
-  <h1>Restaurant Reservation Form</h1>
+  <h1>Restaurant Reservation </h1>
   <form action="process_reservation.php" method="post">
     <label for="name">Name:</label><br>
     <input type="text" id="name" name="name"><br>

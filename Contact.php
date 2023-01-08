@@ -1,24 +1,61 @@
 <?php
 
-// Connect to the database
-$host = 'localhost';
-$user = 'root';
-$password = '';
-$dbname = 'FOODIELICIOUS';
+$host = "localhost";
+$username = "root";
+$password = "";
+$dbname = "metier-advisors";
 
-$dsn = 'mysql:host=' . $host . ';dbname=' . $dbname;
-$pdo = new PDO($dsn, $user, $password);
+// Create connection
+$conn = new mysqli($host, $username, $password, $dbname);
 
-// Insert data into the database
-$firstname = $_POST['firstname'];
-$lastname = $_POST['lastname'];
-$email = $_POST['email'];
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
 
-$sql = "INSERT INTO users (firstname, lastname, email) VALUES (?, ?, ?)";
-$stmt = $pdo->prepare($sql);
-$stmt->execute([$firstname, $lastname, $email]);
+$status = "";
 
-echo "Record added successfully";
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Get the form values
+    $name = $_POST['name'];
+    $email = $_POST['email'];
+    $message = $_POST['message'];
+
+    // Sanitize the form values
+    $name = filter_var($name, FILTER_SANITIZE_STRING);
+    $email = filter_var($email, FILTER_SANITIZE_EMAIL);
+    $message = filter_var($message, FILTER_SANITIZE_STRING);
+
+    // Validate the form values
+    $formErrors = array();
+
+    if (empty($name)) {
+        $formErrors[] = 'Name is required';
+    }
+
+    if (empty($email)) {
+        $formErrors[] = 'Email is required';
+    } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $formErrors[] = 'Email is not valid';
+    }
+
+    if (empty($message)) {
+        $formErrors[] = 'Message is required';
+    }
+
+    // If there are no errors, save the form values to the database
+    if (empty($formErrors)) {
+        $sql = "INSERT INTO contact (name, email, message) VALUES ('$name', '$email', '$message')";
+
+        // Execute the query and handle any errors
+        if ($conn->query($sql) === TRUE) {
+            $status = "<script>alert('New record created successfully');</script>";
+
+        } else {
+            $status = "<script>alert('Error: " . $sql . "<br>" . $conn->error . "');</script>";
+        }
+    }
+}
 
 ?>
 <!DOCTYPE html>
@@ -59,66 +96,23 @@ echo "Record added successfully";
     </div>
   </div>
 </nav>
-<div id="contact">
-    <h1 id="section">Our Contact</h1>
-    <div id="contact_row">
-        <div class="contact_col">
-            <div>
-                <p>
-                    <i class="fa fa-map-marker"></i>
-                    68 South Street, behind NESCOM,
-                     H-11/4 H 11/4 H-11,
-                     Islamabad Capital Territory 44000
-
-                </p>
-               <p>
-                <a href="uzairman1997@gmail.com">
-                    <i class="fa fa-envelop"></i>
-                    uzairman1997@gmail.com
-                </a>
-               </p> 
-               <p>
-                
-                <a href="tel:+923485318789">
-                <i class="fa fa-phone-square"></i>
-               
-                    +923485318789
-
-                </a>
-               </p>
-               <h3>Follow Us</h3>
-               <p>
-                
-               </p>
-            </div>
-            <div style="text-align:center">
-                <h2>Contact Us</h2>
-                <p>Swing by for a cup of coffee, or leave us a message:</p>
-              </div>
-              <div class="row">
-                <div class="column">
-                  <img src="tmuc.jpg" style="width:100%">
-                </div>
-                <div class="column">
-                  <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-                    <label for="fname">First Name</label>
-                    <input type="text" id="fname" name="firstname" placeholder="Your name..">
-                    <label for="lname">Last Name</label>
-                    <input type="text" id="lname" name="lastname" placeholder="Your last name..">
-                    <label for="country">Country</label>
-                    <select id="country" name="country">
-                      <option value="Pakistan">Pakistan</option>
-                      <option value="canada">Canada</option>
-                      <option value="usa">USA</option>
-                    </select>
-                    <label for="subject">Subject</label>
-                    <textarea id="subject" name="subject" placeholder="Write something.." style="height:170px"></textarea>
-                    <input type="submit" value="Submit">
-                  </form>
-                </div>
-              </div>
-    </div>
+<div class="container">
+  <div class="card-1">
+      <h1>Contact Us</h1>
+  </div>
+  <div class="card-2">
+      <h2>Write us a Message</h2>
+      <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+          <input type="text" placeholder="Name" name="name"><br>
+          <input type="email" placeholder="Email" name="email"><br>
+          <textarea id="message" placeholder="Message" required name="message" rows="5" cols="30"></textarea><br>
+          <input id='standard-button' type="submit" value="Submit">
+      </form>
+  </div>
 </div>
+<div class="free">
+  <br>
+    </div>
 <div id="footer">
     <div>
       <h5>Copyright &copy;2023 | <a href="">FOODIELICIOUS</a> 
