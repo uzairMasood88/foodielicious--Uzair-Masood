@@ -45,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
   // If there are no errors, save the form values to the database
   if (empty($formErrors)) {
-    $sql = "INSERT INTO contact (name, email, message) VALUES ('$name', '$email', '$message')";
+    $sql = "INSERT INTO Feedback (name, email, message) VALUES ('$name', '$email', '$message')";
 
     // Execute the query and handle any errors
     if ($conn->query($sql) === TRUE) {

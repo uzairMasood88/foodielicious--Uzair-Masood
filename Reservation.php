@@ -28,7 +28,7 @@
           <li><a href="Home.html">Home</a></li>
           <li><a href="Menu.html">Menu</a></li>
           <li class="active"><a href="Reservation.php">Reservation</a></li>
-          <li><a href="Feedback.phpl">Feedback</a></li>
+          <li><a href="Feedback.php">Feedback</a></li>
           <li><a href="Contact.php">Contact</a></li>
           <li><a href="About.html">About</a></li>
 
