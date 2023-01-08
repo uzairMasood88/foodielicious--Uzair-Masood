@@ -112,6 +112,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <div class="free">
     <br>
     </div>
+    <div class="free">
+        <br>
+    </div>
   <div id="footer">
     <div>
       <h5>Copyright &copy;2023 | <a href="">FOODIELICIOUS</a>

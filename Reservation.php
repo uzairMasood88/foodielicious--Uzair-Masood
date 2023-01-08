@@ -29,10 +29,9 @@
           <li><a href="Menu.html">Menu</a></li>
           <li class="active"><a href="Reservation.html">Reservation</a></li>
           <li><a href="Feedback.html">Feedback</a></li>
-          <li><a href="Contact.html">Contact</a></li>
-
+          <li><a href="Contact.php">Contact</a></li>
           <li><a href="About.html">About</a></li>
-
+          
         </ul>
         
       </div>
