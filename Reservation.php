@@ -58,10 +58,11 @@
     <label for="message">Message:</label><br>
     <textarea id="message" name="message" rows="5" cols="50"></textarea><br>
     <input type="submit" value="Submit">
-    <button><a>Submit</a></button>
   </form>
 
-
+  <div class="free">
+        <br>
+  </div>
 
   <div id="footer">
     <div>
