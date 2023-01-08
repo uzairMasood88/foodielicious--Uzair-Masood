@@ -1,3 +1,63 @@
+<?php
+
+$host = "localhost";
+$username = "root";
+$password = "";
+$dbname = "foodielicious";
+
+// Create connection
+$conn = new mysqli($host, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+  die("Connection failed: " . $conn->connect_error);
+}
+
+$status = "";
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+  // Get the form values
+  $name = $_POST['name'];
+  $email = $_POST['email'];
+  $message = $_POST['message'];
+
+  // Sanitize the form values
+  $name = filter_var($name, FILTER_SANITIZE_STRING);
+  $email = filter_var($email, FILTER_SANITIZE_EMAIL);
+  $message = filter_var($message, FILTER_SANITIZE_STRING);
+
+  // Validate the form values
+  $formErrors = array();
+
+  if (empty($name)) {
+    $formErrors[] = 'Name is required';
+  }
+
+  if (empty($email)) {
+    $formErrors[] = 'Email is required';
+  } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    $formErrors[] = 'Email is not valid';
+  }
+
+  if (empty($message)) {
+    $formErrors[] = 'Message is required';
+  }
+
+  // If there are no errors, save the form values to the database
+  if (empty($formErrors)) {
+    $sql = "INSERT INTO contact (name, email, message) VALUES ('$name', '$email', '$message')";
+
+    // Execute the query and handle any errors
+    if ($conn->query($sql) === TRUE) {
+      $status = "<script>alert('New record created successfully');</script>";
+
+    } else {
+      $status = "<script>alert('Error: " . $sql . "<br>" . $conn->error . "');</script>";
+    }
+  }
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -28,91 +88,40 @@
           <li><a href="Home.html">Home</a></li>
           <li><a href="Menu.html">Menu</a></li>
           <li><a href="Reservation.php">Reservation</a></li>
-
-          <li class="active"><a href="Feedback.html">Feedback</a></li>
-          <li><a href="Contact.php">Contact</a></li>
+          <li><a href="Feedback.html">Feedback</a></li>
+          <li class="active"><a href="Contact.html">Contact</a></li>
 
           <li><a href="About.html">About</a></li>
 
         </ul>
-        
+
       </div>
     </div>
   </nav>
-  <div class="container">
-    <div class="feed-1">
-        <h1>Feedback</h1>
-    </div>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <div>
+      <h1>Send us your feed back</h1>
+      <h2>How can we make ourselves better</h2>
+      <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+        <input type="text" placeholder="Name" name="name"><br>
+        <input type="email" placeholder="Email" name="email"><br>
+        <textarea id="message" placeholder="Message" required name="message" rows="5" cols="30"></textarea><br>
+        <input id='standard-button' type="submit" value="Submit">
+      </form>
+  </div>
 
-<span class="heading">User Rating</span>
-<span class="fa fa-star checked"></span>
-<span class="fa fa-star checked"></span>
-<span class="fa fa-star checked"></span>
-<span class="fa fa-star checked"></span>
-<span class="fa fa-star"></span>
-<p>4.1 average based on 254 reviews.</p>
-<hr style="border:3px solid #f1f1f1">
-
-<div class="row">
-  <div class="side">
-    <div>5 star</div>
-  </div>
-  <div class="middle">
-    <div class="bar-container">
-      <div class="bar-5"></div>
+  <div class="free">
+    <br>
+    </div>
+    <div class="free">
+        <br>
+    </div>
+  <div id="footer">
+    <div>
+      <h5>Copyright &copy;2023 | <a href="">FOODIELICIOUS</a>
+      </h5>
+    </div>
+    <div id="top">
+      <a href=""><i class="fa fa-chevron-circle-up"></i> </a>
     </div>
   </div>
-  <div class="side right">
-    <div>150</div>
-  </div>
-  <div class="side">
-    <div>4 star</div>
-  </div>
-  <div class="middle">
-    <div class="bar-container">
-      <div class="bar-4"></div>
-    </div>
-  </div>
-  <div class="side right">
-    <div>63</div>
-  </div>
-  <div class="side">
-    <div>3 star</div>
-  </div>
-  <div class="middle">
-    <div class="bar-container">
-      <div class="bar-3"></div>
-    </div>
-  </div>
-  <div class="side right">
-    <div>15</div>
-  </div>
-  <div class="side">
-    <div>2 star</div>
-  </div>
-  <div class="middle">
-    <div class="bar-container">
-      <div class="bar-2"></div>
-    </div>
-  </div>
-  <div class="side right">
-    <div>6</div>
-  </div>
-  <div class="side">
-    <div>1 star</div>
-  </div>
-  <div class="middle">
-    <div class="bar-container">
-      <div class="bar-1"></div>
-    </div>
-  </div>
-  <div class="side right">
-    <div>20</div>
-
-  </div>
-</div>
-<div class="free">
-  <br>
-  </div>
 </body>
